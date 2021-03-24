@@ -13,6 +13,7 @@
 	- Cors (Allow cross origin access)
 ### Frontend
 	- React
+	- React Hooks (useState, useEffect, useContext, createContext)
 	- React-Dom (linking)
 	- Semantic UI (styles)
 	- Filepond (File Upload handler)
