@@ -1,0 +1,11 @@
+.App {
+    text-align: center;
+  }
+  
+  .clothesCardImage {
+    vertical-align: "middle";
+    height: 350;
+    width: 250;
+    object-fit:"cover"
+  }
+  
