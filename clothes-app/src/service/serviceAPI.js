@@ -21,7 +21,7 @@ export default function clothesService() {
       files.forEach((file) => {
         formData.append("files", file, file.name);
       });
-      const res = await axios.put(`${HOST_URL}/images/${code}`, formData);
+      const res = await axios.put(`${HOST_URL}/${code}/images`, formData);
       return res.status === 200 ? res.data : res.error;
     },
     editProduct: async (product) => {

@@ -2,6 +2,7 @@
 
 node_modules/
 clothes-backend/public/images/*
+.env
 
 # misc
 .DS_Store

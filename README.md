@@ -1,6 +1,15 @@
 # ShiningCode-Clothes-Service
 - MERN Stack Service for a clothing e-Commerce shop
 
+## Start Commands
+
+| Backend  				 		| Frontend    	       |
+| ----			 		 		| ----		     	   |
+| 1. ``npm install``		 	| 1. ``npm install``   | 
+| 2. ``cd clothes-backend\src`` | 2. ``cd clothes-app``|  
+| 3. ``node server.js`` 		| 3. ``npm start`` 	   |  
+
+
 ## List of technologies used
 ### Backend 
 	- NodeJs
