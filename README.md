@@ -1,6 +1,8 @@
 # ShiningCode-Clothes-Service
 - MERN Stack Service for a clothing e-Commerce shop
 
+[Shining Code Deployment - Heroku](https://shining-code-shop.herokuapp.com/)
+
 ## Start Commands  				 		
 
 1. npm install	 
