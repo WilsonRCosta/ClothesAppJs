@@ -75,9 +75,7 @@ export default function EditProductModal({ product, clothes, setClothes }) {
     productToEdit.images
       .filter((image) => image.data)
       .forEach((image, idx) => {
-        image.data = image.data.startsWith("data")
-          ? image.data.replace(`data:image/${image.type};base64,`, "")
-          : image.data;
+        image.data = image.data.startsWith("data") ? image.data.replace(constructBase64Format(image.type), "") : image.data;
         const bstr = atob(image.data);
         let n = bstr.length;
         let u8Array = new Uint8Array(n);
@@ -92,14 +90,10 @@ export default function EditProductModal({ product, clothes, setClothes }) {
 
   const handleDeleteImage = (image) => {
     const productAux = { ...newProduct };
-    const imageIndex = productAux.images.findIndex(
-      (img) => img.name === image.name
-    );
+    const imageIndex = productAux.images.findIndex((img) => img.name === image.name);
     productAux.images.splice(imageIndex, 1);
     productAux.colors.forEach((color, idx) => {
-      const colorIndex = productAux.images.findIndex(
-        (img) => img.color === color
-      );
+      const colorIndex = productAux.images.findIndex((img) => img.color === color);
       colorIndex < 0 && productAux.colors.splice(idx, 1);
     });
     setNewProduct(productAux);
@@ -110,10 +104,15 @@ export default function EditProductModal({ product, clothes, setClothes }) {
     let salesPrice = Number(newProduct.price) * discount;
     setNewProduct({
       ...newProduct,
-      [e.target.name]: e.target.value,
+      [e.target.name] : e.target.value,
       salesPrice,
     });
   };
+
+  const getImageInBase64 = (image) =>
+      image.data.startsWith("data") ? image.data : `${constructBase64Format(image.type)}${image.data}`
+
+  const constructBase64Format = (type) => `data:image/${type};base64,`
 
   return (
     <Modal
@@ -216,7 +215,7 @@ export default function EditProductModal({ product, clothes, setClothes }) {
               fluid
               required
               error={
-                newProduct.price == undefined
+                newProduct.price === undefined
                   ? { content: "Field is not numeric" }
                   : null
               }
@@ -289,11 +288,9 @@ export default function EditProductModal({ product, clothes, setClothes }) {
             </Form>
           </>
         )}
-        <Grid centered columns={4}>
+        <Grid centered columns={3}>
           <Grid.Row>
-            {newProduct.images
-              .filter((image) => image.data)
-              .map((image, idx) => (
+            { newProduct.images.filter((image) => image.data).map((image, idx) => (
                 <Grid.Column key={idx}>
                   <Image
                     style={{
@@ -301,11 +298,7 @@ export default function EditProductModal({ product, clothes, setClothes }) {
                       border: "1px solid #ddd",
                       borderRadius: 20,
                     }}
-                    src={
-                      image.data.startsWith("data")
-                        ? image.data
-                        : `data:image/${image.type};base64,${image.data}`
-                    }
+                    src={getImageInBase64(image)}
                   />
                   <Button
                     style={{

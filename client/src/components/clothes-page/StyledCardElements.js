@@ -58,6 +58,8 @@ export const GridSaleColumn = styled(Grid.Column)`
   text-decoration-color: red;
 `;
 
-export const GridColumn = styled(Grid.Column)``;
+export const GridColumn = styled(Grid.Column)`
+  max-width: 100px;
+`;
 
 export const GridRow = styled(Grid.Row)``;

@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Button, Form, Grid, Input } from "semantic-ui-react";
 import { useSnackbar } from "notistack";
 import { Link, useHistory } from "react-router-dom";
-import { service } from "../auth";
 import { UserContext } from "../contexts/UserContext";
 import clothesService from "../service/serviceAPI";
 import NavBar from "./navbar/NavBar";

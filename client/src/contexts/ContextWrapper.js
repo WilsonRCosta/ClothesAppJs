@@ -13,7 +13,7 @@ const ContextWrapper = () => {
     >
       <UserContextProvider>
         <WishlistContextProvider>
-          <BagContextProvider></BagContextProvider>
+          <BagContextProvider/>
         </WishlistContextProvider>
       </UserContextProvider>
     </SnackbarProvider>

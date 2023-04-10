@@ -1,15 +1,17 @@
-let express = require("express");
-let mongoose = require("mongoose");
-const path = require("path");
-const dotenv = require("dotenv");
-dotenv.config();
+const express = require("express"),
+    mongoose = require("mongoose"),
+    path = require("path"),
+    dotenv = require("dotenv"),
+    swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json'),
+    productsController = require("./controller/product-controller.js"),
+    usersController = require("./controller/user-controller.js");
 
-let productsController = require("./controller/productController.js");
-let usersController = require("./controller/userController.js");
+dotenv.config();
 
 // App config
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8001;
 
 // Middleware
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -17,13 +19,11 @@ app.use(express.json());
 app.use("/api/products", productsController);
 app.use("/api/auth", usersController);
 app.use("/public", express.static("public"));
-
-//Local DB
-const connection_url = "mongodb://localhost:27017/clothes-db";
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // DB Config
 mongoose.connect(
-  process.env.DB_CONNECT, //connection_url,
+  process.env.DB_CONNECT,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
